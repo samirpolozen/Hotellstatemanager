@@ -30,19 +30,19 @@ while (programigång)
                   Console.Write("Lösenord: ");
                   string? lösenord = Console.ReadLine();
 
-                  string[] rad = File.ReadAllLines("admin.txt");
-                  string[] delar = rad[0].Split(';');
+                  string[] rad = File.ReadAllLines("admin.txt"); // Läsen in hela filen som skickar tillbaka en array av rader, rader[0] = "admin;password"
+                  string[] del = rad[0].Split(';'); // Delar upp raden från filen i två delar med ';' till 2 olika index
 
-                  string rättanvnamn = delar[0];
-                  string rättlösenord = delar[1];
+                  string rättanvnamn = del[0]; // admin = index [0]
+                  string rättlösenord = del[1]; // password = index[1]
 
-                  if (anvnamn == rättanvnamn && lösenord == rättlösenord)
+                  if (anvnamn == rättanvnamn && lösenord == rättlösenord) // Matcher användarens input mot index som vi sparade i filen
                   {
-                        inloggad = true; // Hoppar över till meny 2
+                        inloggad = true; // Inloggning lyckades, hoppar över till meny 2
                   }
                   else
                   {
-                        Console.WriteLine("Fel användarnamn eller lösenord");
+                        Console.WriteLine("Fel användarnamn eller lösenord"); // Om inte input matcher med index [0] och [1], skicka felmeddelande
                   }
             }
             else if (input == "2")
