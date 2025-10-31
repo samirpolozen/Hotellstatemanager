@@ -10,9 +10,76 @@ if (!File.Exists(adminfil)) // Om filen inte skulle existera , skapa den och skr
       File.WriteAllText(adminfil, "admin;password");
 }
 
-// Meny 1 för inloggning
+bool programigång = true;
 
-bool inloggad = false;
+while (programigång)
+{
+      // Meny 1 för inloggning
+      bool inloggad = false;
+      while (!inloggad)
+      {
+            Console.WriteLine("===Meny===");
+            Console.WriteLine("1. Logga in ");
+            Console.WriteLine("2. Avsluta");
+            string input = Console.ReadLine();
+
+            if (input == "1")
+            {
+                  Console.Write("Användarnamn: ");
+                  string? anvnamn = Console.ReadLine();
+                  Console.Write("Lösenord: ");
+                  string? lösenord = Console.ReadLine();
+
+                  string[] rad = File.ReadAllLines("admin.txt");
+                  string[] delar = rad[0].Split(';');
+
+                  string rättanvnamn = delar[0];
+                  string rättlösenord = delar[1];
+
+                  if (anvnamn == rättanvnamn && lösenord == rättlösenord)
+                  {
+                        inloggad = true; // Hoppar över till meny 2
+                  }
+                  else
+                  {
+                        Console.WriteLine("Fel användarnamn eller lösenord");
+                  }
+            }
+            else if (input == "2")
+            {
+                  programigång = false;
+                  break;
+            }
+      }
+
+      while (inloggad)
+      {
+            Console.WriteLine("=== Receptionist Meny ===");
+            Console.WriteLine(" 1.");
+            Console.WriteLine(" 2.");
+            Console.WriteLine(" 3.");
+            Console.WriteLine(" 4.");
+            Console.WriteLine(" 5.");
+            Console.WriteLine(" 6. Logga ut");
+            string input2 = Console.ReadLine();
+
+            switch (input2)
+            {
+                  case "6":
+                        inloggad = false;
+                        break;
+            }
+
+
+
+
+
+      }
+
+}
+
+// Meny 1 för inloggning
+/*bool inloggad = false;
 while (!inloggad)
 {
       Console.WriteLine("===Meny===");
@@ -71,3 +138,4 @@ while (inloggad)
 
 
 }
+*/
