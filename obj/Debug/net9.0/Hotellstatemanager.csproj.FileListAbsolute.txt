@@ -1,0 +1,15 @@
+C:\Users\samir\repos\HotellStatemanager\bin\Debug\net9.0\Hotellstatemanager.exe
+C:\Users\samir\repos\HotellStatemanager\bin\Debug\net9.0\Hotellstatemanager.deps.json
+C:\Users\samir\repos\HotellStatemanager\bin\Debug\net9.0\Hotellstatemanager.runtimeconfig.json
+C:\Users\samir\repos\HotellStatemanager\bin\Debug\net9.0\Hotellstatemanager.dll
+C:\Users\samir\repos\HotellStatemanager\bin\Debug\net9.0\Hotellstatemanager.pdb
+C:\Users\samir\repos\HotellStatemanager\obj\Debug\net9.0\Hotellstatemanager.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\samir\repos\HotellStatemanager\obj\Debug\net9.0\Hotellstatemanager.AssemblyInfoInputs.cache
+C:\Users\samir\repos\HotellStatemanager\obj\Debug\net9.0\Hotellstatemanager.AssemblyInfo.cs
+C:\Users\samir\repos\HotellStatemanager\obj\Debug\net9.0\Hotellstatemanager.csproj.CoreCompileInputs.cache
+C:\Users\samir\repos\HotellStatemanager\obj\Debug\net9.0\Hotellstatemanager.sourcelink.json
+C:\Users\samir\repos\HotellStatemanager\obj\Debug\net9.0\Hotellstatemanager.dll
+C:\Users\samir\repos\HotellStatemanager\obj\Debug\net9.0\refint\Hotellstatemanager.dll
+C:\Users\samir\repos\HotellStatemanager\obj\Debug\net9.0\Hotellstatemanager.pdb
+C:\Users\samir\repos\HotellStatemanager\obj\Debug\net9.0\Hotellstatemanager.genruntimeconfig.cache
+C:\Users\samir\repos\HotellStatemanager\obj\Debug\net9.0\ref\Hotellstatemanager.dll

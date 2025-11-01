@@ -1,7 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using app;
 
 
 string adminfil = "admin.txt"; // Sparar admin.txt filen till en variabel
@@ -55,7 +55,7 @@ while (programigång)
       while (inloggad)
       {
             Console.WriteLine("=== Receptionist Meny ===");
-            Console.WriteLine(" 1.");
+            Console.WriteLine(" 1. Boka ny gäst");
             Console.WriteLine(" 2.");
             Console.WriteLine(" 3.");
             Console.WriteLine(" 4.");
@@ -65,7 +65,10 @@ while (programigång)
 
             switch (input2)
             {
-                  case "6":
+                  case "1":
+                        Service.AddBooking();
+                        break;
+                  case "6" :
                         inloggad = false;
                         break;
             }
