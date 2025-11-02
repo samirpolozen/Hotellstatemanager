@@ -64,12 +64,12 @@ public class Service
 
 
       }
-      
+
       public static void CheckaUt()
       {
             Console.Write("Ange rummsnummer för utcheckning: ");
             int rumut = Convert.ToInt32(Console.ReadLine());
-            
+
             // 
             Booking bokningTaBort = null;
             // Försöker hitta bokningen där jag jämför input rumsnummer mot rumsnummer i listan OCH enum ska vara .Upptaget
@@ -88,7 +88,7 @@ public class Service
             }
 
             bokningar.Remove(bokningTaBort); // Tar bort ur listan
-            
+
             // Skriver om filen
             File.WriteAllText(filnamn, ""); // Skriver om hela filens innehåll med en tom sträng => ""
             foreach (Booking n in bokningar) // Med hjälp av listan, skriver vi in till filen alla bokningar som är kvar
@@ -97,7 +97,30 @@ public class Service
             }
 
             Console.WriteLine("Utcheckat rum: " + rumut);
-                  
 
+
+      }
+      
+      public static void VisaLedigaRum()
+      {
+            Console.WriteLine("=== Lediga Rum===");
+
+            for(int i = 1; i <= 20; i++) // Loopar igenom alla 20 rum först 
+            {
+                  bool ÄrUpptaget = false; // Sätter hittade rum till false 
+
+                  foreach (Booking n in bokningar) // Loopar igenom listan med våra objekt
+                  {
+                        if (n.Rum == i && (n.Status == Avalability.Upptaget || n.Status == Avalability.EjTillängligt))
+                        {
+                              ÄrUpptaget = true; // Efter varje varv, om ÄrUpptaget är enum Upptaget eller EjTillängligt sätt till true;
+                              break; // kör nästa varv
+                        }
+                  }
+                  if (!ÄrUpptaget) // Om rummet inte blev markerat med true;, skriv ut lediga rum
+                  {
+                        Console.WriteLine("Rum: " + i + " - Ledigt");
+                  }
+            }
       }
 }
