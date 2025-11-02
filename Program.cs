@@ -56,7 +56,7 @@ while (programigång)
       {
             Console.WriteLine("=== Receptionist Meny ===");
             Console.WriteLine(" 1. Boka ny gäst");
-            Console.WriteLine(" 2.");
+            Console.WriteLine(" 2. Checka ut gäst");
             Console.WriteLine(" 3.");
             Console.WriteLine(" 4.");
             Console.WriteLine(" 5.");
@@ -65,8 +65,11 @@ while (programigång)
 
             switch (input2)
             {
-                  case "1":
+                  case "1" :
                         Service.AddBooking();
+                        break;
+                  case "2":
+                        Service.CheckaUt();
                         break;
                   case "6" :
                         inloggad = false;

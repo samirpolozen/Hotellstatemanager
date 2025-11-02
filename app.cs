@@ -32,7 +32,7 @@ public class Service
             // Metod för att lägga till en gäst i fil och lista
             Console.WriteLine("---Boka gäst---");
             Console.Write("Namn och efternamn: ");
-            string? nyttnamn= Console.ReadLine();
+            string? nyttnamn = Console.ReadLine();
 
             Console.Write("(Rum 1-20) Rum: ");
             int nyttrum = Convert.ToInt32(Console.ReadLine());
@@ -50,17 +50,54 @@ public class Service
             if (rumupptaget) // Om true, skicka felmeddelande
             {
                   Console.WriteLine("Rummet är inte tillängligt att boka!");
+                  return;
             }
-            
-            // Lägger in mina värden i konstruktorn och skapar ett nytt Booking objekt 
+
+            // Lägger in mina värden i konstruktorn och skapar ett nytt Bookings objekt 
             Booking booking = new Booking(nyttnamn, nyttrum, Avalability.Upptaget);
             bokningar.Add(booking); // Lägger till det nya objektet i listan
-            
+
             // Lägger till bokningen i filen "Bokningar.txt" som på varje ny rad sparas med formatet Namn + Rum + Status
             File.AppendAllText(filnamn, booking.Namn + " - " + booking.Rum + " - " + Avalability.Upptaget + Environment.NewLine);
 
             Console.WriteLine("Bokningen lyckades!");
-             
+
+
+      }
+      
+      public static void CheckaUt()
+      {
+            Console.Write("Ange rummsnummer för utcheckning: ");
+            int rumut = Convert.ToInt32(Console.ReadLine());
+            
+            // 
+            Booking bokningTaBort = null;
+            // Försöker hitta bokningen där jag jämför input rumsnummer mot rumsnummer i listan OCH enum ska vara .Upptaget
+            foreach (Booking i in bokningar)
+            {
+                  if (rumut == i.Rum && i.Status == Avalability.Upptaget)
+                  {
+                        bokningTaBort = i;
+                        break; // Avslutar loopen när vi matchat rätt
+                  }
+            }
+            if (bokningTaBort == null)
+            {
+                  Console.WriteLine("Ingen aktiv bokning på detta rumsnummer");
+                  return; // Avbryter metoden och hoppar över resten av koden
+            }
+
+            bokningar.Remove(bokningTaBort); // Tar bort ur listan
+            
+            // Skriver om filen
+            File.WriteAllText(filnamn, ""); // Skriver om hela filens innehåll med en tom sträng => ""
+            foreach (Booking n in bokningar) // Med hjälp av listan, skriver vi in till filen alla bokningar som är kvar
+            {
+                  File.AppendAllText(filnamn, n.Namn + " - " + n.Rum + " - " + n.Status + Environment.NewLine);
+            }
+
+            Console.WriteLine("Utcheckat rum: " + rumut);
+                  
 
       }
 }
