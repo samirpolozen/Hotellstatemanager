@@ -10,6 +10,12 @@ if (!File.Exists(adminfil)) // Om filen inte skulle existera , skapa den och skr
       File.WriteAllText(adminfil, "admin;password");
 }
 
+if (!File.Exists(Service.filnamn)) // 1. Om filen inte finns
+{
+      File.WriteAllText(Service.filnamn, ""); // 2. Skapa den tom
+}
+Service.LaddaUppBokningar(); // Laddar upp allt nytt från förra körningen
+
 bool programigång = true;
 
 while (programigång)

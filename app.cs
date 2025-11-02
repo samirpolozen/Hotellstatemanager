@@ -27,6 +27,23 @@ public class Service
       public static string filnamn = "Bokningar.txt";
       public static List<Booking> bokningar = new();
 
+      public static void LaddaUppBokningar()
+      {
+            bokningar.Clear(); // Tömmer listan så vi inte får dubletter/ gammal data
+            string[] rad = File.ReadAllLines(filnamn); // Läser in alla rader från textfilen precis som admin.txt
+
+            foreach(string n in rad) // Loopar igenom varje rad i filen
+            {
+                  string[] delar = n.Split('-'); // Vi splitar upp varje index med '-'
+
+                  string namn = delar[0]; // index 0 blir string
+                  int rum = int.Parse(delar[1]); // index 1 omvandlar text till siffra
+                  Avalability status = Enum.Parse<Avalability>(delar[2]); // index 2 omvandlar till enum
+
+                  bokningar.Add(new Booking(namn, rum, status)); // Lägger till objektet i listan
+            }
+      }
+
       public static void AddBooking()
       {
             // Metod för att lägga till en gäst i fil och lista
