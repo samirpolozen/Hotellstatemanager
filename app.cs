@@ -46,6 +46,7 @@ public class Service
 
       public static void AddBooking()
       {
+            Console.Clear();
             // Metod för att lägga till en gäst i fil och lista
             Console.WriteLine("---Boka gäst---");
             Console.Write("Namn och efternamn: ");
@@ -84,6 +85,7 @@ public class Service
 
       public static void CheckaUt()
       {
+            Console.Clear();
             Console.Write("Ange rummsnummer för utcheckning: ");
             int rumut = Convert.ToInt32(Console.ReadLine());
 
@@ -120,6 +122,8 @@ public class Service
 
       public static void VisaLedigaRum()
       {
+            Console.Clear();
+
             Console.WriteLine("=== Lediga Rum===");
 
             for (int i = 1; i <= 20; i++) // Loopar igenom alla 20 rum först 
@@ -143,6 +147,7 @@ public class Service
 
       public static void VisaUpptagnaRum()
       {
+            Console.Clear();
             Console.WriteLine("=== Upptagna rum ===");
 
             int upptagnarum = 0; // Lägger räknaren på noll, håller koll på antal upptagna rum
@@ -168,6 +173,7 @@ public class Service
       
       public static void ReserveraRum()
       {
+            Console.Clear();
             Console.WriteLine("=== Reservera rum ===");
             Console.WriteLine("Ange namn för reservationen: ");
             string? name = Console.ReadLine();

@@ -45,6 +45,7 @@ while (programigång) // Första loopen för hela programmet
                   if (anvnamn == rättanvnamn && lösenord == rättlösenord) // Matchar användarens input mot index som vi sparade i filen
                   {
                         inloggad = true; // Inloggning lyckades, hoppar över till meny 2
+                        Console.Clear();
                   }
                   else
                   {
