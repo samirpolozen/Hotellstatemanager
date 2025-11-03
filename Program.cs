@@ -18,16 +18,16 @@ Service.LaddaUppBokningar(); // Laddar upp allt nytt från förra körningen
 
 bool programigång = true;
 
-while (programigång)
+while (programigång) // Första loopen för hela programmet
 {
       // Meny 1 för inloggning
       bool inloggad = false;
-      while (!inloggad)
+      while (!inloggad) // Andra loopen för inloggad eller inte
       {
             Console.WriteLine("===Meny===");
             Console.WriteLine("1. Logga in ");
             Console.WriteLine("2. Avsluta");
-            string input = Console.ReadLine();
+            string? input = Console.ReadLine();
 
             if (input == "1")
             {
@@ -42,7 +42,7 @@ while (programigång)
                   string rättanvnamn = del[0]; // admin = index [0]
                   string rättlösenord = del[1]; // password = index[1]
 
-                  if (anvnamn == rättanvnamn && lösenord == rättlösenord) // Matcher användarens input mot index som vi sparade i filen
+                  if (anvnamn == rättanvnamn && lösenord == rättlösenord) // Matchar användarens input mot index som vi sparade i filen
                   {
                         inloggad = true; // Inloggning lyckades, hoppar över till meny 2
                   }
@@ -58,16 +58,17 @@ while (programigång)
             }
       }
 
-      while (inloggad)
+      while (inloggad) // Tredje loopen för inloggad
       {
+            
             Console.WriteLine("=== Receptionist Meny ===");
             Console.WriteLine(" 1. Boka ny gäst");
             Console.WriteLine(" 2. Checka ut gäst");
             Console.WriteLine(" 3. Visa lediga rum");
             Console.WriteLine(" 4. Visa upptagna rum");
-            Console.WriteLine(" 5.");
+            Console.WriteLine(" 5. Reservera rum");
             Console.WriteLine(" 6. Logga ut");
-            string input2 = Console.ReadLine();
+            string? input2 = Console.ReadLine();
 
             switch (input2)
             {
@@ -83,77 +84,18 @@ while (programigång)
                   case "4":
                         Service.VisaUpptagnaRum();
                         break;
+                  case "5":
+                        Service.ReserveraRum();
+                        break;
                   case "6" :
                         inloggad = false;
                         break;
             }
 
 
-
-
-
       }
 
 }
 
-// Meny 1 för inloggning
-/*bool inloggad = false;
-while (!inloggad)
-{
-      Console.WriteLine("===Meny===");
-      Console.WriteLine("1. Logga in ");
-      Console.WriteLine("2. Avsluta");
-      string input = Console.ReadLine();
-
-      if (input == "1")
-      {
-            Console.Write("Användarnamn: ");
-            string? anvnamn = Console.ReadLine();
-            Console.Write("Lösenord: ");
-            string? lösenord = Console.ReadLine();
-
-            string[] rad = File.ReadAllLines("admin.txt");
-            string[] delar = rad[0].Split(';');
-
-            string rättanvnamn = delar[0];
-            string rättlösenord = delar[1];
-
-            if (anvnamn == rättanvnamn && lösenord == rättlösenord)
-            {
-                  inloggad = true; // Hoppar över till meny 2
-            }
-            else
-            {
-                  Console.WriteLine("Fel användarnamn eller lösenord");
-            }
-      }
-      else if (input == "2")
-      {
-            break;
-      }
-}
-
-while (inloggad)
-{
-      Console.WriteLine("=== Receptionist Meny ===");
-      Console.WriteLine(" 1.");
-      Console.WriteLine(" 2.");
-      Console.WriteLine(" 3.");
-      Console.WriteLine(" 4.");
-      Console.WriteLine(" 5.");
-      Console.WriteLine(" 6. Logga ut");
-      string input2 = Console.ReadLine();
-
-      switch (input2)
-      {
-            case "6":
-                  inloggad = false;
-                  break;
-      }
 
 
-
-
-
-}
-*/

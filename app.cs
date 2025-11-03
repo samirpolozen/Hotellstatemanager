@@ -27,7 +27,7 @@ public class Service
       public static string filnamn = "Bokningar.txt";
       public static List<Booking> bokningar = new();
 
-      public static void LaddaUppBokningar() // Läsen in bokningarna från filen till listan vid varja uppstart
+      public static void LaddaUppBokningar() // Läser_ in bokningarna från filen till listan vid varja uppstart
       {
             bokningar.Clear(); // Tömmer listan så vi inte får dubletter/ gammal data
             string[] rad = File.ReadAllLines(filnamn); // Läser in alla rader från textfilen precis som admin.txt
@@ -140,7 +140,7 @@ public class Service
                   }
             }
       }
-      
+
       public static void VisaUpptagnaRum()
       {
             Console.WriteLine("=== Upptagna rum ===");
@@ -164,5 +164,43 @@ public class Service
             {
                   Console.WriteLine("Antal upptagna rum: " + upptagnarum); // Annars skriv ut antal upptagna rum
             }
+      }
+      
+      public static void ReserveraRum()
+      {
+            Console.WriteLine("=== Reservera rum ===");
+            Console.WriteLine("Ange namn för reservationen: ");
+            string? name = Console.ReadLine();
+            Console.WriteLine("(Rum 1-20) Rum: ");
+            int room = Convert.ToInt32(Console.ReadLine());
+            
+            // Säkerhetskontroll så vi inte bokar ett rum som redan är upptaget eller ej tillängligt
+            bool rumupptaget = false; // bool för att hitta om rummet redan är upptaget
+            foreach (Booking n in bokningar)
+            {
+                  // Om angivet rum matcher ett existerande rum OCH om enum Status matcher Upptaget ELLER EjTillängligt
+                  if (room == n.Rum && (n.Status == Avalability.Upptaget || n.Status == Avalability.EjTillängligt))
+                  {
+                        rumupptaget = true; // Om den hittar matchning sätt till true;
+                        break;
+                  }
+            }
+            if (rumupptaget) // Om true, skicka felmeddelande
+            {
+                  Console.WriteLine("Rummet är inte tillängligt att reservera");
+                  return; // Avbryter att resten av metoden körs
+            }
+
+            //SKapar ett nytt Booking objekt med hårdkodat enum EjTillänglig
+            Booking reserveraBokning = new Booking(name, room, Avalability.EjTillängligt);
+            bokningar.Add(reserveraBokning); // Lägger till i listan
+
+            // Sparar till filen
+            File.AppendAllText(filnamn, reserveraBokning.Namn + " - " + reserveraBokning.Rum + " - " + reserveraBokning.Status + Environment.NewLine);
+            Console.WriteLine("Reservationen har lagt till för: " + name);
+      
+
+
+
       }
 }
