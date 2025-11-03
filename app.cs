@@ -27,7 +27,7 @@ public class Service
       public static string filnamn = "Bokningar.txt";
       public static List<Booking> bokningar = new();
 
-      public static void LaddaUppBokningar()
+      public static void LaddaUppBokningar() // Läsen in bokningarna från filen till listan vid varja uppstart
       {
             bokningar.Clear(); // Tömmer listan så vi inte får dubletter/ gammal data
             string[] rad = File.ReadAllLines(filnamn); // Läser in alla rader från textfilen precis som admin.txt
@@ -117,12 +117,12 @@ public class Service
 
 
       }
-      
+
       public static void VisaLedigaRum()
       {
             Console.WriteLine("=== Lediga Rum===");
 
-            for(int i = 1; i <= 20; i++) // Loopar igenom alla 20 rum först 
+            for (int i = 1; i <= 20; i++) // Loopar igenom alla 20 rum först 
             {
                   bool ÄrUpptaget = false; // Sätter hittade rum till false 
 
@@ -138,6 +138,31 @@ public class Service
                   {
                         Console.WriteLine("Rum: " + i + " - Ledigt");
                   }
+            }
+      }
+      
+      public static void VisaUpptagnaRum()
+      {
+            Console.WriteLine("=== Upptagna rum ===");
+
+            int upptagnarum = 0; // Lägger räknaren på noll, håller koll på antal upptagna rum
+
+            foreach (Booking n in bokningar) // Loopar igenom listan med objekten bokningar
+            {
+                  // Kollar om rummet är Upptaget eller EjTillängligt med enum
+                  if (n.Status == Avalability.Upptaget || n.Status == Avalability.EjTillängligt)
+                  {
+                        Console.WriteLine(n.Rum + " - " + n.Namn + " - " + n.Status); // Rumsnummer - Namn - Status
+                        upptagnarum++; // Efter varje träff, öka räknaren
+                  }
+            }
+            if (upptagnarum == 0) // Om noll, inget rum upptaget
+            {
+                  Console.WriteLine("Inga upptagna rum");
+            }
+            else
+            {
+                  Console.WriteLine("Antal upptagna rum: " + upptagnarum); // Annars skriv ut antal upptagna rum
             }
       }
 }
